@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int speed = 1000;
-    public bool gameOver;
+    public int speed = 200;
+    public float horizontal;
+    public float vertical;
     void Start()
     {
 
@@ -15,9 +16,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameOver == false)
-        {
-            transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed);
-        }
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+
+        transform.Translate(Vector3.back * Time.deltaTime * speed * horizontal);
+        transform.Translate(Vector3.right * Time.deltaTime * speed * vertical);
     }
+
 }
